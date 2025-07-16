@@ -5,16 +5,8 @@ services:
     buildCommand: |
       corepack enable
       corepack prepare pnpm@latest --activate
-      pnpm install --frozen-lockfile
-
-      # Build only the packages needed at runtime — ignore json-schema-to-zod and test tooling
-      pnpm turbo run build \
-        --filter=@n8n/n8n \
-        --filter=@n8n/constants \
-        --filter=@n8n/errors \
-        --filter=@n8n/permissions \
-        --filter=@n8n/client-oauth2 \
-        --force
+      pnpm install
+      pnpm turbo run build --filter=n8n --filter=!@n8n/json-schema-to-zod
     startCommand: pnpm start
     envVars:
       - key: NODE_OPTIONS
