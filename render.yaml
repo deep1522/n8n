@@ -3,10 +3,16 @@ services:
     name: n8n
     env: node
     buildCommand: |
-      corepack enable
-      corepack prepare pnpm@latest --activate
-      pnpm install --frozen-lockfile
-      pnpm turbo run build --filter=@n8n/n8n --filter=@n8n/constants --filter=@n8n/errors --filter=@n8n/permissions --filter=@n8n/client-oauth2
+  corepack enable
+  corepack prepare pnpm@latest --activate
+  pnpm install --frozen-lockfile
+  pnpm turbo run build \
+    --filter=@n8n/n8n \
+    --filter=@n8n/constants \
+    --filter=@n8n/errors \
+    --filter=@n8n/permissions \
+    --filter=@n8n/client-oauth2
+
     startCommand: pnpm start
     envVars:
       - key: NODE_OPTIONS
