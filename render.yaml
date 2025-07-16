@@ -5,8 +5,8 @@ services:
     buildCommand: |
       corepack enable
       corepack prepare pnpm@latest --activate
-      pnpm install
-      pnpm turbo run build --filter=n8n --filter=!@n8n/json-schema-to-zod
+      pnpm install --frozen-lockfile=false
+      pnpm turbo run build --filter=n8n
     startCommand: pnpm start
     envVars:
       - key: NODE_OPTIONS
